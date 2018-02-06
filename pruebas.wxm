@@ -1,0 +1,43 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.4 ] */
+
+/* [wxMaxima: subsect start ]
+Animaciones graficas
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+wiht_slider   --   plot2d
+with_slider_draw   --   draw2d
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(1/k,k,1,20);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+with_slider(n,makelist(k,k,1,20),
+                sin(x*n),[x,-5,5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(implicit(x^2+y^2=1,x,-5,5,y-5,5));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(nticks=200,
+parametric(cos(t),sin(t),t,0,2*%pi)),
+yrange=(-3,3),
+xrange=(-3,3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+vectores
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(head_angle =4,
+vector([1,1],[0,5]));
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

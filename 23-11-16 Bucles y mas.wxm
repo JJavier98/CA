@@ -1,0 +1,446 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.4 ] */
+
+/* [wxMaxima: title   start ]
+Métodos numéricos de resolución de ecuaciones
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: section start ]
+Introducción al análisis númerico
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Hablamos de numeros maquina cuando nos referimos a los numeros que tiene guardados el programa.
+Si introducimos un numero exacto Maxima elige el que mas se aproxima a el. Con lo que está "redondeado"
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Errores de redondeo
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+A lo anterior hay que añadir que cuando se pasa de sist. decimal a binario y se vuelve al decimal, se acumulan
+los errores de redondeo y pueden pasar cosas como esta;
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:20;
+bfloat(0.1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Sin embargo:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+bfloat(1/10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Elemento neutro
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Tomamos un númro muy pequeño, pero distinto de cero y vemos que maxima lo interpreta como cero
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+h:2.22045*10^(-17);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+is(1.0+h=1.0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Por encima con números muy grandes puede hacer cosas raras
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Cálculo de dos expresiones
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: subsect start ]
+
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:40;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a:bfloat(1-(10)^(-30));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+b:a+1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a^2-1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a-1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+c:(%o9)/(%o10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Resolución numérica de ecuaciones con Maxima
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: subsect start ]
+Comandos de resolucion aproximada
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Recordar allroots, solve, bfallroots, nroots, find_roo
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+allroots(x^5-x^3+6*x-81);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+numero de raices
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+nroots(x^5-x^3+6*x-81, -3, 3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+find_root --> teorema de bolzano
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=exp(x)+log(x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(f(x)=0,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+¡No funciona!
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+allroots(f(x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+No funciona. No es un polinomio...
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([f(x)], [x,-1,5], [y,-5,6]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+parece que hay un cero entre 0 y 1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+find_root(f(x), x, 0, 1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+como el punto 0 no pertenece al dominio no da resultado. Si buscamos un número proximo a cero y donde la funcion sea negativa
+si funcionará el comando
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+find_root(f(x), x, 0.1, 1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Breves conceptos de programación
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: subsect start ]
+Bucles for
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Calcular los 10 primeros multiplos de 7
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+for i:1 thru 10 do print(7*i);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo 2: Calcular la suma de los 100
+primeros cuadrados.
+Hay que añadir una variable adicional
+para guardar las sumas
+que vaya calculando.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+suma:0$
+for i:1 thru 100 do suma:suma+i^2$
+print(suma)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+suma:0;
+for i:1 thru 100 do suma:suma+i^2;
+print(suma);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo3: Sumemos la serie geometrica de razon x=1/2
+¡¡Cambiar a numérico!!
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+suma:0$
+for i:0 thru 10 do suma:suma+(1/(2)^i)$
+print(suma);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+numer:true;
+suma:0$
+for i:0 thru 10 do suma:suma+(1/(2)^i)$
+print(suma);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+suma:0$
+for i:0 thru 100 do suma:suma+(1/(2)^i)$
+print(suma);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+numer:false;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+suma:1$
+for i:1 thru 100 do suma:suma+1/(2^i)$
+print(suma);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Comando 'sum' para hacer sumatorias
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum( 1/(2^k), k , 1, 100), numer;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Bucles while, unless, do
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+while condicion do expr
+unless condicion do expr
+do expre
+return (var)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Calcular cos(x)
+comenzando en x=0 e ir aumentando de 0.3 en 0.3
+hasta que deje de ser positivo
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+a:0$
+while cos(a)>0 do (
+                    print([a,cos(a)]),
+                    a:a+0.3)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Condicionales
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+for i:1 thru 10 do(
+                   if log(i)<2 then
+                   print ("el logaritmo de ", i , " es menor que 2")
+                   else return (j:i)
+                                   )$
+                   print ("el logartitmo de ", j , " es mayor que 2");
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicios:
+
+
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Ejer 1: Escribir con un bucle while desde 1 y en intervalos de 0.5 en 0.5
+los valortes del log, siempre que éste sea menor que 2.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+a:1$
+while log(a)<2 do (
+                   print ([a,log(a)]),
+                   a:a+0.5)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejer 2: Empezando en 7 , y decreciendo con step 0.5,
+escribe [i. log(i)] siempre que log(i)>=1, con un bucle unless.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+b:7$
+unless log(b)<1 do (
+                    print ([b,log(b)]),
+                    b:b-0.5)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejer 3: Utilizar la estructura if-then-else en un bucle for para,
+empezando en 10, y decreciendo de uno en uno hasta el 1,
+dar de salida las exponenciales que sean mayores
+que 1000 y parar cuando sea menor que 1000.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+for c:10 thru 1 do (
+                    print ([c,exp(c)]),
+                    )
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Método de Bisección
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+En primer lugar, presentamos la funcion
+a la que le vamos a calcular el cero,
+los extremos del intervalo
+donde vamos a localizarlo y verificamos
+la condicion del reorema de Bolzano:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x^6+x-5;
+a:0$
+b:2$
+f(a);
+f(b);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d ([f(x)],[x,-5,5], [y,-8,10]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: page break    ] */
+
+/* [wxMaxima: input   start ] */
+numer:true;
+for i:1 thru 10 do (
+            c:(a+b)/2,
+            if f(a)*f(c)<0 then b:c
+            else a:c,
+            print([a,b]))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for i:1 thru 100 do (
+            c:(a+b)/2,
+            if f(a)*f(c)<0 then b:c
+            else a:c,
+            print([a,b]))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Control del error
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Si presentamos err como el error que prefijamos,
+el nº de pasos qque hay que dar será:
+ceiling(log_2((b-a)/err)) = el menor entero mayor o igual que log_2((b-a)/err)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x^6+x-5$
+a:0.0$
+b:2.0$
+f(a)*f(b);
+err:10^(-5)$
+log2(x):=log(x)/log(2)$
+pasos:ceiling(log2((b-a)/err));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+biseccion2(expr,var,ext_inf,ext_sup):=
+block(
+[a:ext_inf,b:ext_sup,c,pasos,err:10^(-8),prec:10^(-9),j
+local(log2,f),
+define(log2(x),log(x)/log(2)),
+define(f(x),subst(x,var,expr)),
+pasos:ceiling(log2((b-a)/err)),
+/* comprobamos las condiciones iniciales */
+if f(a)*f(b)>0 then error("Error: no hay cambio de signo"),
+/* ¿se alcanza la solución en los extremos? */
+if abs(f(a)) < prec then return(a),
+if abs(f(b)) < prec then return(b),
+for k:1 thru pasos do
+(
+c:(a+b)/2,
+if abs(f(c))< prec then return (c),
+if f(a)*f(c)< 0 then b:c else a:c
+),
+c
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+biseccion(xˆ2-2,x,0.0,3.0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio:
+
+El metodo de la regula falsi o
+de la falsa posicion es muy parecido al metodo de biseccion.
+La unica diferencia es que se cambia el punto
+medio por el punto de corte del segmento
+que une los puntos (a,f(a)) y (b,f(b))
+con el eje de abscisas.
+Escribe un programa que utilice este metodo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Para la funcion f(x):=x^2-5
+en el intervalo [0,4], compara
+el resultaadocon el de la biseccion.
+¿Cual es mejor?
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+regulafalsi(expr,var,ext_inf,ext_sup):=
+block([xt_inf,b:ext_sup,c,prec],
+prec:10^(-10),
+pasos:n,
+local(f),
+define(f(x),subst(x,var,expr)),
+)
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

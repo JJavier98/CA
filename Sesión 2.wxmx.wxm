@@ -1,0 +1,231 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.4 ] */
+
+/* [wxMaxima: page break    ] */
+
+/* [wxMaxima: title   start ]
+SEGUNDA SESIÓN
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: section start ]
+Funciones
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+definir funciones:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):= sin(x^2-2*x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Dibujamos la función desde el menú: graficos ---> 2D
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([sin(x^2-2*x)], [x,-5,5])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([f(x)], [x,-5,5])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Para definir funciones
+:=          define(f,expresión)
+fundef(f)   nos devuelve la expresion de la funcion
+functionns nos muestra todas las funciones definidas
+remfuction(f1,f2,...) elimina las funciones señaladas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+:= presenta desventajas respecto a define(f,expr)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):= 
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Funciones elementales
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([exp(x), (1/2)^x], [x, -5, 5], [y, -1, 10]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([log(x)], [x, -1, 5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([x^6, sqrt(x), x], [x, -2, 5], [y, -0.5, 2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([sin(x), cos(x)],[x,-5,5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([tan(x)], [x, -10, 10], [y, -10, 10]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([asin(x)], [x, -5, 5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([acos(x)], [x, -2, 2], [y, -1, 5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([atan(x)], [x, -3, 3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Funciones definidas
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: fold    start ] */
+
+/* [wxMaxima: comment start ]
+Podemos definir funciones de manera independiente ó
+con la estructuta if _ then _ else
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+remfunction(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):= if x<0 then x^2 else x^3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(-5);f(5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([f(x)], [x, -5, 5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+La estructura if then else no funciona con derivadas ni integrales
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(f(x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g(x):=if x<=1 then x^2 else
+       if x<=%pi then sin(x) else 1-x;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([g(x)], [x, -1, 4], [y, -3, 1.5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: fold    end   ] */
+
+/* [wxMaxima: section start ]
+Funciones Hiperbólicas
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: fold    start ] */
+
+/* [wxMaxima: input   start ] */
+sinh(x):= ( e^x - e^(-x) )/2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+cosh(x):= ( e^x + e^(-x) )/2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([sinh(x)], [x, -10, 10], [y, -10, 10]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([cosh(x)][x, -10, 10], [y, -10, 10]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: fold    end   ] */
+
+/* [wxMaxima: section start ]
+Graficos con Draw
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+wxdraw2d(color=___)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color=red,
+    explicit(cos(2*x),x,0,4*%pi));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    line_width=3,
+    color=red,
+    explicit(x+1,x,-2.5,2.5),
+    color=purple,
+    implicit(x^2+(y-1)^2=4,x,-2,2,y,-1,3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Graficos de puntos
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: input   start ] */
+lista:makelist([random(20), random(50),k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Ejercicios
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+dibujar las rectas que pasan por los puntos (1,1)(3,-2)(2,5)
+recta = m*(x-num1)+num2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+m_1= (1-(-2))/(1-3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+m_2= (1-5)/(1-2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+m_3= (-2-5)/(3-2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h(x):= -7*(x-3)-2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g(x):= 4*(x-1)+1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):= ((-3)/2)*(x-1) + 1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([f(x), g(x), h(x)], [x,-10,10], [y,-10,10]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+dibujar la elipse 1/2x^2 + 3*y^2 = 1
+el rectangulo circunscrito
+marcar los puntos de corte
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

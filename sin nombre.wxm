@@ -1,0 +1,92 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.4 ] */
+
+/* [wxMaxima: subsect start ]
+diff comando para derivar
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(sin(x),x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(g(x),diff(sin(x),x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+taylor(g(x),x,0,2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([g(x),taylor(g(x),x,0,2)],[x,-10,10],[y,-5,5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([g(x),taylor(g(x),x,0,5)],[x,-10,10],[y,-5,5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([g(x),taylor(g(x),x,0,10)],[x,-10,10],[y,-5,5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([g(x),taylor(g(x),x,0,20)],[x,-10,10],[y,-5,5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([g(x),taylor(g(x),x,0,2),taylor(g(x),x,0,5),taylor(g(x),x,0,10),taylor(g(x)
+,x,0,22)],[x,-20,20],[y,-15,15]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=sin(x)+cos(x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(t1(x),taylor(f(x),x,0,1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(t2(x),taylor(f(x),x,0,2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(t3(x),taylor(f(x),x,0,3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(t4(x),taylor(f(x),x,0,4));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(t5(x),taylor(f(x),x,0,5));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(t6(x),taylor(f(x),x,0,6));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(t7(x),taylor(f(x),x,0,7));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(t8(x),taylor(f(x),x,0,8));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(t9(x),taylor(f(x),x,0,9));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([f(x),t2(x),t3(x),t4(x),t5(x),t6(x),t7(x)],[x,-15,15],[y,-15,15]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([f(x)],[x,-30,30], [y,-150,150]),
+with_slider(n,makelist(k,k,0,9),
+taylor(f(x),x,0,n), [x,-30,30], [y,-150,150]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
